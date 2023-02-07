@@ -1,0 +1,16 @@
+{
+  "name": "appmonitor-schema",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "concurrently \"npm:build:client\"",
+    "build:client": "ts-json-schema-generator --path 'src/client/**/*.ts' -o schema/client.json"
+  },
+  "author": "",
+  "private": "true",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-json-schema-generator": "^1.2.0",
+    "concurrently": "^7.6.0",
+    "typescript": "^4.9.5"
+  }
+}

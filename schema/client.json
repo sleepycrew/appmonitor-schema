@@ -1,0 +1,132 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "CheckResult": {
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "type": "integer"
+    },
+    "ClientCheck": {
+      "additionalProperties": false,
+      "properties": {
+        "count": {
+          "type": "number"
+        },
+        "description": {
+          "type": "string"
+        },
+        "group": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "parent": {
+          "type": "string"
+        },
+        "result": {
+          "$ref": "#/definitions/CheckResult"
+        },
+        "time": {
+          "type": "number"
+        },
+        "value": {
+          "type": "string"
+        },
+        "visual": {
+          "$ref": "#/definitions/VisualType"
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "result",
+        "value"
+      ],
+      "type": "object"
+    },
+    "ClientMeta": {
+      "additionalProperties": false,
+      "properties": {
+        "host": {
+          "type": "string"
+        },
+        "notifications": {
+          "$ref": "#/definitions/ClientNotifications"
+        },
+        "result": {
+          "$ref": "#/definitions/CheckResult"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "time": {
+          "type": "number"
+        },
+        "ttl": {
+          "type": "integer"
+        },
+        "website": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "host",
+        "website",
+        "result"
+      ],
+      "type": "object"
+    },
+    "ClientNotifications": {
+      "additionalProperties": false,
+      "properties": {
+        "email": {
+          "maxItems": 0,
+          "minItems": 0,
+          "type": "array"
+        },
+        "slack": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ClientResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "checks": {
+          "items": {
+            "$ref": "#/definitions/ClientCheck"
+          },
+          "type": "array"
+        },
+        "meta": {
+          "$ref": "#/definitions/ClientMeta"
+        }
+      },
+      "required": [
+        "meta",
+        "checks"
+      ],
+      "type": "object"
+    },
+    "VisualType": {
+      "enum": [
+        "simple",
+        "bar",
+        "line"
+      ],
+      "type": "string"
+    }
+  }
+}
